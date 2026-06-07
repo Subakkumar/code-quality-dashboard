@@ -1,0 +1,7 @@
+echo venv/ > .gitignore
+echo .env >> .gitignore
+echo instance/ >> .gitignore
+echo __pycache__/ >> .gitignore
+echo *.pyc >> .gitignore
+echo temp_repos/ >> .gitignore
+echo *.zip >> .gitignore

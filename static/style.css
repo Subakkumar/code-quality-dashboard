@@ -1,0 +1,398 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0d1117;
+  color: #e2e8f0;
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── NAV ─────────────────────────── */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: #161b27;
+  border-bottom: 1px solid #21262d;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #f0f6fc;
+}
+
+.brand-icon { color: #58a6ff; }
+
+.nav-tag {
+  font-size: .72rem;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+.nav-tag::before {
+  content: '●';
+  color: #3fb950;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+/* ── CONTAINER ───────────────────── */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+/* ── HERO ────────────────────────── */
+.hero {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.hero h1 {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 800;
+  color: #f0f6fc;
+  margin-bottom: .5rem;
+  letter-spacing: -.02em;
+}
+
+.accent { color: #58a6ff; }
+
+.hero-sub {
+  color: #6b7280;
+  max-width: 580px;
+  margin: 0 auto;
+  font-size: .95rem;
+}
+
+/* ── CARD ────────────────────────── */
+.card {
+  background: #161b27;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-title {
+  font-size: .9rem;
+  font-weight: 600;
+  color: #94a3b8;
+  margin-bottom: 1rem;
+  letter-spacing: .02em;
+}
+
+/* ── TABS ────────────────────────── */
+.input-card { padding-bottom: 1.5rem; }
+
+.tabs {
+  display: flex;
+  gap: .5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #21262d;
+  padding-bottom: .5rem;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  color: #6b7280;
+  font-size: .82rem;
+  font-weight: 500;
+  padding: .5rem 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all .2s;
+}
+
+.tab-btn:hover { color: #e2e8f0; background: #1c2333; }
+.tab-btn.active { color: #58a6ff; background: rgba(88,166,255,.08); }
+
+/* ── DROP ZONE ───────────────────── */
+.drop-zone {
+  border: 2px dashed #30363d;
+  border-radius: 10px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.drop-zone:hover, .drop-zone.dragover {
+  border-color: #58a6ff;
+  background: rgba(88,166,255,.04);
+}
+
+.drop-icon { font-size: 2.2rem; margin-bottom: .5rem; }
+
+.drop-zone h3 {
+  font-size: 1rem;
+  color: #f0f6fc;
+  margin-bottom: .3rem;
+}
+
+.drop-sub { font-size: .8rem; color: #6b7280; margin-bottom: 1rem; }
+
+/* ── GITHUB INPUT ────────────────── */
+.github-row {
+  display: flex;
+  gap: .75rem;
+  margin-bottom: .75rem;
+}
+
+.github-input {
+  flex: 1;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  color: #e2e8f0;
+  padding: .7rem 1rem;
+  border-radius: 8px;
+  font-size: .875rem;
+  outline: none;
+  transition: border-color .2s;
+}
+
+.github-input:focus { border-color: #58a6ff; }
+.github-hint { font-size: .75rem; color: #4b5563; }
+
+/* ── BUTTONS ─────────────────────── */
+.btn-primary {
+  background: #238636;
+  color: white;
+  border: none;
+  padding: .65rem 1.5rem;
+  border-radius: 8px;
+  font-size: .875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s;
+  white-space: nowrap;
+}
+
+.btn-primary:hover { background: #2ea043; }
+
+/* ── LOADING ─────────────────────── */
+.loading {
+  text-align: center;
+  padding: 3rem;
+  color: #6b7280;
+}
+
+.spinner {
+  width: 40px; height: 40px;
+  border: 3px solid #21262d;
+  border-top-color: #58a6ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── SCORE BANNER ────────────────── */
+.score-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #1a2a6c, #23405e, #1a3a2a);
+  border-radius: 14px;
+  padding: 2rem 2.5rem;
+  margin-bottom: 1.5rem;
+  gap: 2rem;
+}
+
+.score-project {
+  font-family: 'Fira Code', monospace;
+  font-size: .8rem;
+  color: rgba(255,255,255,.6);
+  margin-bottom: .35rem;
+  letter-spacing: .05em;
+}
+
+.score-label {
+  font-size: .75rem;
+  color: rgba(255,255,255,.6);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-bottom: .25rem;
+}
+
+.score-value {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: white;
+  line-height: 1;
+}
+
+.score-sub {
+  font-size: .75rem;
+  color: rgba(255,255,255,.5);
+  margin-top: .25rem;
+}
+
+.score-ring-wrap {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  flex-shrink: 0;
+}
+
+.score-ring { width: 110px; height: 110px; }
+
+.score-ring-num {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+/* ── KPI ROW ─────────────────────── */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.kpi-card {
+  background: #161b27;
+  border: 1px solid #21262d;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.kpi-val {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #58a6ff;
+}
+
+.kpi-lbl {
+  font-size: .68rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-top: .3rem;
+}
+
+/* ── ISSUES ──────────────────────── */
+.issue-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: .875rem 0;
+  border-bottom: 1px solid #21262d;
+}
+
+.issue-row:last-child { border-bottom: none; }
+
+.issue-badge {
+  font-size: .6rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.badge-critical { background: rgba(248,81,73,.15); color: #f85149; }
+.badge-high     { background: rgba(247,129,102,.15); color: #f78166; }
+.badge-medium   { background: rgba(255,166,87,.15); color: #ffa657; }
+.badge-low      { background: rgba(63,185,80,.12); color: #3fb950; }
+
+.issue-desc { font-size: .875rem; color: #94a3b8; line-height: 1.5; }
+.issue-count { font-size: .75rem; color: #4b5563; margin-top: .2rem; }
+
+.no-issues {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .9rem;
+  color: #3fb950;
+  padding: .5rem 0;
+}
+
+/* ── RECOMMENDATIONS ─────────────── */
+.recs-card { border-color: rgba(63,185,80,.3); }
+
+.recs-text {
+  font-size: .9rem;
+  color: #94a3b8;
+  line-height: 1.85;
+  white-space: pre-wrap;
+}
+
+/* ── PREVIOUS ────────────────────── */
+.prev-card { margin-bottom: 0; }
+
+.prev-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .875rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .15s;
+  border-bottom: 1px solid #21262d;
+}
+
+.prev-item:last-child { border-bottom: none; }
+.prev-item:hover { background: #1c2333; }
+
+.prev-left { display: flex; flex-direction: column; gap: .2rem; }
+.prev-name { font-size: .875rem; color: #e2e8f0; font-weight: 500; }
+.prev-type {
+  font-size: .7rem; color: #6b7280;
+  text-transform: uppercase; letter-spacing: .08em;
+}
+
+.prev-right { display: flex; flex-direction: column; align-items: flex-end; gap: .2rem; }
+.prev-score { font-size: .95rem; font-weight: 700; }
+.score-high { color: #3fb950; }
+.score-mid  { color: #ffa657; }
+.score-low  { color: #f85149; }
+.prev-date  { font-size: .72rem; color: #4b5563; }
+
+.empty-msg { font-size: .85rem; color: #4b5563; text-align: center; padding: 1rem 0; }
+
+/* ── FOOTER ──────────────────────── */
+.footer {
+  border-top: 1px solid #21262d;
+  padding: 1.25rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: .72rem;
+  color: #4b5563;
+  margin-top: 2rem;
+}
+
+/* ── UTIL ────────────────────────── */
+.hidden { display: none !important; }
+.tab-pane.hidden { display: none !important; }
+
+@media (max-width: 640px) {
+  .kpi-row { grid-template-columns: repeat(3, 1fr); }
+  .score-banner { flex-direction: column; text-align: center; }
+  .github-row { flex-direction: column; }
+}

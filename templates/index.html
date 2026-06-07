@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Code Quality Dashboard</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-brand">
+    <span class="brand-icon">◆</span>
+    Code Quality Dashboard
+  </div>
+  <div class="nav-tag">Powered by Groq · Llama 3.3 70B</div>
+</nav>
+
+<main class="container">
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1>Analyze Your <span class="accent">Python Code</span> Quality</h1>
+    <p class="hero-sub">Upload a zip or paste a GitHub URL — get an AI-powered quality score, issue breakdown, and specific improvement recommendations.</p>
+  </div>
+
+  <!-- Input Tabs -->
+  <div class="card input-card">
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="upload">📦 Upload Zip</button>
+      <button class="tab-btn" data-tab="github">🐙 GitHub Repo</button>
+    </div>
+
+    <!-- Upload Tab -->
+    <div id="upload-tab" class="tab-pane active">
+      <div id="drop-zone" class="drop-zone">
+        <div class="drop-icon">📂</div>
+        <h3>Drop your Python project zip here</h3>
+        <p class="drop-sub">Zip your project folder and upload — max 50MB</p>
+        <button id="select-btn" class="btn-primary">Choose .zip File</button>
+        <input type="file" id="file-input" accept=".zip" style="display:none"/>
+      </div>
+    </div>
+
+    <!-- GitHub Tab -->
+    <div id="github-tab" class="tab-pane hidden">
+      <div class="github-row">
+        <input type="text" id="github-url"
+               placeholder="https://github.com/username/repository"
+               class="github-input"/>
+        <button id="analyze-btn" class="btn-primary">Analyze</button>
+      </div>
+      <p class="github-hint">Public repositories only. Large repos may take 30–60 seconds.</p>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div id="loading" class="loading hidden">
+    <div class="spinner"></div>
+    <p id="loading-msg">Analyzing your code...</p>
+  </div>
+
+  <!-- Results -->
+  <div id="results" class="hidden">
+
+    <!-- Score Banner -->
+    <div class="score-banner" id="score-banner">
+      <div class="score-left">
+        <div class="score-project" id="score-project">—</div>
+        <div class="score-label">Quality Score</div>
+        <div class="score-value" id="score-value">—</div>
+        <div class="score-sub">out of 10.0</div>
+      </div>
+      <div class="score-ring-wrap">
+        <svg class="score-ring" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="10"/>
+          <circle id="score-arc" cx="60" cy="60" r="50" fill="none"
+                  stroke="white" stroke-width="10"
+                  stroke-dasharray="314" stroke-dashoffset="314"
+                  stroke-linecap="round"
+                  transform="rotate(-90 60 60)"
+                  style="transition: stroke-dashoffset 1.2s ease"/>
+        </svg>
+        <div class="score-ring-num" id="score-ring-num">—</div>
+      </div>
+    </div>
+
+    <!-- KPI Row -->
+    <div class="kpi-row">
+      <div class="kpi-card">
+        <div class="kpi-val" id="kpi-files">—</div>
+        <div class="kpi-lbl">Files</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val" id="kpi-lines">—</div>
+        <div class="kpi-lbl">Lines of Code</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val" id="kpi-funcs">—</div>
+        <div class="kpi-lbl">Functions</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val" id="kpi-classes">—</div>
+        <div class="kpi-lbl">Classes</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val" id="kpi-issues">—</div>
+        <div class="kpi-lbl">Issues Found</div>
+      </div>
+    </div>
+
+    <!-- Issues -->
+    <div class="card" id="issues-card">
+      <h3 class="card-title">⚠️ Issues Found</h3>
+      <div id="issues-list"></div>
+    </div>
+
+    <!-- AI Recommendations -->
+    <div class="card recs-card">
+      <h3 class="card-title">🤖 AI Recommendations</h3>
+      <div id="recs-text" class="recs-text"></div>
+    </div>
+
+  </div>
+
+  <!-- Previous Analyses -->
+  <div class="card prev-card">
+    <h3 class="card-title">📋 Previous Analyses</h3>
+    <div id="prev-list">
+      {% if analyses %}
+        {% for a in analyses %}
+        <div class="prev-item" onclick="loadAnalysis({{ a.id }})">
+          <div class="prev-left">
+            <span class="prev-name">{{ a.project_name }}</span>
+            <span class="prev-type">{{ a.upload_type }}</span>
+          </div>
+          <div class="prev-right">
+            <span class="prev-score
+              {% if a.quality_score >= 8 %}score-high
+              {% elif a.quality_score >= 6 %}score-mid
+              {% else %}score-low{% endif %}">
+              {{ '%.1f'|format(a.quality_score) }}/10
+            </span>
+            <span class="prev-date">{{ a.created_at.strftime('%b %d, %Y') }}</span>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <p class="empty-msg">No analyses yet — upload your first project!</p>
+      {% endif %}
+    </div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <span>◆ Code Quality Dashboard</span>
+  <span>github.com/Subakkumar</span>
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

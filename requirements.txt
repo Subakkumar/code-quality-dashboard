@@ -1,0 +1,5 @@
+flask
+flask-sqlalchemy
+groq
+python-dotenv
+gitpython
