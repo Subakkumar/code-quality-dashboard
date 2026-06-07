@@ -32,3 +32,8 @@ Analyze Python code quality and get AI-powered recommendations powered by Groq (
 - Files exceeding 300 lines
 - Syntax errors
 - OOP usage patterns
+
+## Screenshots
+
+<img width="1920" height="982" alt="Screenshot (50)" src="https://github.com/user-attachments/assets/3f77bf97-f573-486c-bb0e-d8bbf37fadbf" />
+<img width="1920" height="982" alt="Screenshot (50)" src="https://github.com/user-attachments/assets/9ee70ba2-9255-4898-bb0e-cb61db833843" />
