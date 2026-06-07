@@ -35,5 +35,5 @@ Analyze Python code quality and get AI-powered recommendations powered by Groq (
 
 ## Screenshots
 
-<img width="1920" height="982" alt="Screenshot (50)" src="https://github.com/user-attachments/assets/3f77bf97-f573-486c-bb0e-d8bbf37fadbf" />
+<img width="1920" height="980" alt="Screenshot (49)" src="https://github.com/user-attachments/assets/4de87768-a98d-440d-a151-eef5ca1127e2" />
 <img width="1920" height="982" alt="Screenshot (50)" src="https://github.com/user-attachments/assets/9ee70ba2-9255-4898-bb0e-cb61db833843" />
